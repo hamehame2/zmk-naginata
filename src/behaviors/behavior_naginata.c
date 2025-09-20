@@ -309,7 +309,7 @@ static naginata_kanamap ngdickana[] = {
 
 
     // COLONシフト B_COLON 
-    {.shift = NONE    , .douji = B_COLONN|B_Q        , .kana = {X, A, NONE, NONE, NONE, NONE   }, .func = nofunc }, // ぁ
+    {.shift = NONE    , .douji = B_COLON|B_Q        , .kana = {X, A, NONE, NONE, NONE, NONE   }, .func = nofunc }, // ぁ
     {.shift = NONE    , .douji = B_COLON|B_W        , .kana = {X, I, NONE, NONE, NONE, NONE   }, .func = nofunc }, // ぃ
     {.shift = NONE    , .douji = B_COLON|B_E        , .kana = {X, U, NONE, NONE, NONE, NONE   }, .func = nofunc }, // ぅ
     {.shift = NONE    , .douji = B_COLON|B_R        , .kana = {X, E, NONE, NONE, NONE, NONE   }, .func = nofunc }, // ぇ
