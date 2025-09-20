@@ -49,7 +49,7 @@ extern int64_t timestamp;
 #define B_K (1UL << 17)
 #define B_L (1UL << 18)
 #define B_SEMI (1UL << 19)
-#define B_COLONN (1UL << 20)
+#define B_COLON (1UL << 20)
 
 #define B_Z (1UL << 21)
 #define B_X (1UL << 22)
