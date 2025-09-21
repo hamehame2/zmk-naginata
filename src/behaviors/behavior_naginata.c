@@ -193,7 +193,7 @@ static naginata_kanamap ngdickana[] = {
     {.shift = NONE     , .douji = B_D|B_I        , .kana = {Y, O, NONE, NONE, NONE, NONE   }, .func = nofunc }, // よ
     {.shift = NONE    , .douji = B_D|B_O        , .kana = {M, I, NONE, NONE, NONE, NONE   }, .func = nofunc }, // み
     {.shift = NONE    , .douji = B_D|B_P        , .kana = {W, E, NONE, NONE, NONE, NONE   }, .func = nofunc }, // うぇ
-    {.shift = NONE    , .douji = B_D|B_COLON     , .kana = {U, L, O, NONE, NONE, NONE      }, .func = nofunc }, // うぉ
+    //{.shift = NONE    , .douji = B_D|B_COLON     , .kana = {U, L, O, NONE, NONE, NONE      }, .func = nofunc }, // うぉ
     {.shift = NONE    , .douji = B_K|B_A        , .kana = {H, O, NONE, NONE, NONE, NONE   }, .func = nofunc }, // ほ
     {.shift = NONE     , .douji = B_K|B_S        , .kana = {J, I, NONE, NONE, NONE, NONE   }, .func = nofunc }, // じ
     {.shift = NONE    , .douji = B_K|B_D        , .kana = {R, E, NONE, NONE, NONE, NONE   }, .func = nofunc }, // れ
