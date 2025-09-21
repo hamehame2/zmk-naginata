@@ -49,7 +49,7 @@ extern int64_t timestamp;
 #define B_K (1UL << 17)
 #define B_L (1UL << 18)
 #define B_SEMI (1UL << 19)
-//#define B_COLON (1UL << 20)
+
 
 #define B_Z (1UL << 20)
 #define B_X (1UL << 21)
@@ -64,6 +64,7 @@ extern int64_t timestamp;
 #define B_SLASH (1UL << 29)
 
 #define B_SPACE (1UL << 30)
+#define B_COLON (1UL << 31)
 
 static NGListArray nginput;
 static uint32_t pressed_keys = 0UL; // 押しているキーのビットをたてる
@@ -93,6 +94,7 @@ static const uint32_t ng_key[] = {
     //[COMMA - A] = B_COMMA, [DOT - A] = B_DOT, [SLASH - A] = B_SLASH, [SPACE - A] = B_SPACE,
     //[ENTER - A] = B_SPACE,
     [DOT - A] = B_DOT, [SLASH - A] = B_SLASH, [SPACE - A] = B_SPACE, [ENTER - A] = B_SPACE,
+    [COLON - A] = B_COLON,
 };
 
 // カナ変換テーブル
@@ -686,7 +688,7 @@ bool naginata_press(struct zmk_behavior_binding *binding, struct zmk_behavior_bi
     case COMMA:
     case SLASH:
     case SEMI:
-    //case COLON:        
+    case COLON:        
         n_pressed_keys++;
         pressed_keys |= ng_key[keycode - A]; // キーの重ね合わせ
 
@@ -779,7 +781,7 @@ bool naginata_release(struct zmk_behavior_binding *binding,
     case COMMA:
     case SLASH:
     case SEMI:
-    //case COLON:
+    case COLON:
         if (n_pressed_keys > 0)
             n_pressed_keys--;
         if (n_pressed_keys == 0)
