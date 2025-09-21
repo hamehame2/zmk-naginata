@@ -156,8 +156,8 @@ static naginata_kanamap ngdickana[] = {
     {.shift = NONE    , .douji = B_COMMA        , .kana = {D, E, NONE, NONE, NONE, NONE   }, .func = nofunc }, // で
     {.shift = NONE    , .douji = B_SEMI         , .kana = {N, A, NONE, NONE, NONE, NONE   }, .func = nofunc }, // な
     {.shift = NONE    , .douji = B_Q         , .kana = {MINUS, NONE, NONE, NONE, NONE, NONE   }, .func = nofunc }, // ー
-    // げ追加
-    {.shift = NONE    , .douji = B_COLON         , .kana = {G, E, NONE, NONE, NONE, NONE   }, .func = nofunc }, // げ
+    // げ追加げはシフトに移行
+    //{.shift = NONE    , .douji = B_COLON         , .kana = {G, E, NONE, NONE, NONE, NONE   }, .func = nofunc }, // げ
 
     // 濁音
     //{.shift = NONE    , .douji = B_J|B_F        , .kana = {G, A, NONE, NONE, NONE, NONE   }, .func = nofunc }, // が
