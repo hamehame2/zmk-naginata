@@ -312,10 +312,12 @@ void ngh_DFU() { // +{End}{BS}
 
 void ngh_DFI() { // {vk1Csc079}
     //ng_saihenkan();
-    raise_zmk_keycode_state_changed_from_encoded(LALT, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(SLASH, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(SLASH, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LALT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LGUI, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LG(SLASH), true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LG(SLASH), false, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LG(SLASH), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LG(SLASH), false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LGUI, false, timestamp);
 }
 
 void ngh_DFO() { // {Del}
