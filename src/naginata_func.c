@@ -338,7 +338,7 @@ void ngh_DFI() { // {vk1Csc079}
     //raise_zmk_keycode_state_changed_from_encoded(LEFT_WIN, true, now);
     raise_zmk_keycode_state_changed_from_encoded(LEFT_WIN, true, timestamp);
     // 30〜80ms ほど待つ（環境により最適値は変わる）
-    k_msleep(50);
+    k_msleep(80);
     // 「/」をタップ（押してすぐ離す）
     //now = k_uptime_get_32();
     //raise_zmk_keycode_state_changed_from_encoded(SLASH, true, now);
