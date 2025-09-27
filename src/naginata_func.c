@@ -326,12 +326,31 @@ void ngh_DFU() { // +{End}{BS}
 
 void ngh_DFI() { // {vk1Csc079}
     //ng_saihenkan();
-    raise_zmk_keycode_state_changed_from_encoded(LGUI, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(SLASH, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(SLASH, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT_WIN, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(SLASH, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(SLASH, false, timestamp);
     //raise_zmk_keycode_state_changed_from_encoded(LG(SLASH), true, timestamp);
     //raise_zmk_keycode_state_changed_from_encoded(LG(SLASH), false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LGUI, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT_WIN, false, timestamp);
+    uint32_t now;
+    // Win(Left GUI) を押下
+    //now = k_uptime_get_32();
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT_WIN, true, now);
+    raise_zmk_keycode_state_changed_from_encoded(LEFT_WIN, true, timestamp);
+    // 30〜80ms ほど待つ（環境により最適値は変わる）
+    k_msleep(50);
+    // 「/」をタップ（押してすぐ離す）
+    //now = k_uptime_get_32();
+    //raise_zmk_keycode_state_changed_from_encoded(SLASH, true, now);
+    // ほんの少しだけ後で離す（数 ms でOK）
+    //raise_zmk_keycode_state_changed_from_encoded(SLASH, false, now + 2);
+    // Win を離す前にもごく短い間を置くと安定しやすい
+    //k_msleep(10);
+    //now = k_uptime_get_32();
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT_WIN, false, now);
+    raise_zmk_keycode_state_changed_from_encoded(SLASH, true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(SLASH, false, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LEFT_WIN, false, timestamp);
 }
 
 void ngh_DFO() { // {Del}
