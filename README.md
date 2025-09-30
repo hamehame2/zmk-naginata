@@ -22,9 +22,9 @@ https://github.com/eswai/zmk-naginata
 
 筆者Twitterアカウント:herm@PTclown
 
-下記は2025/9/27　23時時点の現行のキーマップです。スピード性はあまりないかもしれませんが外来音はかなりカバーしていますのでタイパーでなければ必要十分かと。
+下記は2025/9/30　23時時点の現行のキーマップです。スピード性はあまりないかもしれませんが外来音はかなりカバーしていますのでタイパーでなければ必要十分かと。
 
-https://pbs.twimg.com/media/G13CLHqbEAAZLE3?format=png&name=900x900
+[https://pbs.twimg.com/media/G13CLHqbEAAZLE3?format=png&name=900x900](https://pbs.twimg.com/media/G2Gfq63aoAA-ubx?format=png&name=900x900)
 
 3行で実装するため、面数を増やしております。
 
