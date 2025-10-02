@@ -388,32 +388,56 @@ void ngh_DFK() { // +{↑} +LEFT
     //raise_zmk_keycode_state_changed_from_encoded(LSHIFT, true, timestamp);
     //ng_up(1);
     //raise_zmk_keycode_state_changed_from_encoded(LSHIFT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LSHIFT, true, timestamp);
+
+    
+    //raise_zmk_keycode_state_changed_from_encoded(LSHIFT, true, timestamp);
     //ng_up(1);
-    raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LEFT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LSHIFT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LSHIFT, false, timestamp);
+
+    raise_zmk_keycode_state_changed_from_encoded(LS(LEFT), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(LEFT), false, timestamp);
+    
 }
 
 void ngh_DFL() { // +{↑ 7} +LEFT7
     //raise_zmk_keycode_state_changed_from_encoded(LSHIFT, true, timestamp);
     //ng_up(7);
     //raise_zmk_keycode_state_changed_from_encoded(LSHIFT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LSHIFT, true, timestamp);
+    
+    
+    //raise_zmk_keycode_state_changed_from_encoded(LSHIFT, true, timestamp);
     //ng_up(1);
-    raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LEFT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LEFT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LEFT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LEFT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LEFT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LEFT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LSHIFT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LEFT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LSHIFT, false, timestamp);
+
+
+    raise_zmk_keycode_state_changed_from_encoded(LS(LEFT), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(LEFT), false, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(LEFT), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(LEFT), false, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(LEFT), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(LEFT), false, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(LEFT), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(LEFT), false, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(LEFT), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(LEFT), false, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(LEFT), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(LEFT), false, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(LEFT), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(LEFT), false, timestamp);
 }
 
 void ngh_DFSCLN() { // ^i
@@ -436,34 +460,61 @@ void ngh_DFCOMM() { // +{↓}  +RIGHT
     //raise_zmk_keycode_state_changed_from_encoded(LSHIFT, true, timestamp);
     //ng_down(1);
     //raise_zmk_keycode_state_changed_from_encoded(LSHIFT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LSHIFT, true, timestamp);
+
+    
+    //raise_zmk_keycode_state_changed_from_encoded(LSHIFT, true, timestamp);
     //ng_up(1);
-    raise_zmk_keycode_state_changed_from_encoded(RIGHT, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(RIGHT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LSHIFT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(RIGHT, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(RIGHT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(LSHIFT, false, timestamp);
+
+
+    raise_zmk_keycode_state_changed_from_encoded(LS(RIGHT), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(RIGHT), false, timestamp);
+
+
+    
 }
 
 void ngh_DFDOT() { // +{↓ 7} +RIGHT7
     //raise_zmk_keycode_state_changed_from_encoded(LSHIFT, true, timestamp);
     //ng_down(7);
     //raise_zmk_keycode_state_changed_from_encoded(LSHIFT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(LSHIFT, true, timestamp);
+
+    
+    //raise_zmk_keycode_state_changed_from_encoded(LSHIFT, true, timestamp);
     //ng_up(1);
-    raise_zmk_keycode_state_changed_from_encoded(RIGHT, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(RIGHT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(RIGHT, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(RIGHT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(RIGHT, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(RIGHT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(RIGHT, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(RIGHT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(RIGHT, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(RIGHT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(RIGHT, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(RIGHT, false, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(RIGHT, true, timestamp);
-    raise_zmk_keycode_state_changed_from_encoded(RIGHT, false, timestamp);    
-    raise_zmk_keycode_state_changed_from_encoded(LSHIFT, false, timestamp);    
+    //raise_zmk_keycode_state_changed_from_encoded(RIGHT, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(RIGHT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(RIGHT, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(RIGHT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(RIGHT, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(RIGHT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(RIGHT, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(RIGHT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(RIGHT, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(RIGHT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(RIGHT, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(RIGHT, false, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(RIGHT, true, timestamp);
+    //raise_zmk_keycode_state_changed_from_encoded(RIGHT, false, timestamp);    
+    //raise_zmk_keycode_state_changed_from_encoded(LSHIFT, false, timestamp);    
+
+    raise_zmk_keycode_state_changed_from_encoded(LS(RIGHT), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(RIGHT), false, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(RIGHT), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(RIGHT), false, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(RIGHT), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(RIGHT), false, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(RIGHT), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(RIGHT), false, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(RIGHT), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(RIGHT), false, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(RIGHT), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(RIGHT), false, timestamp);    
+    raise_zmk_keycode_state_changed_from_encoded(LS(RIGHT), true, timestamp);
+    raise_zmk_keycode_state_changed_from_encoded(LS(RIGHT), false, timestamp);
+    
 }
 
 void ngh_DFSLSH() { // ^u
