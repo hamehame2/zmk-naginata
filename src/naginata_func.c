@@ -260,7 +260,7 @@ void ngh_JKS() { // 『{改行}
     raise_zmk_keycode_state_changed_from_encoded(LS(N9), false, timestamp);
     k_msleep(50);    
     raise_zmk_keycode_state_changed_from_encoded(ENTER, true, timestamp);
-    //k_msleep(50);
+    k_msleep(50);
     raise_zmk_keycode_state_changed_from_encoded(ENTER, false, timestamp);
     k_msleep(50);
     raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
