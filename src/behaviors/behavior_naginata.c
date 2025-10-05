@@ -314,7 +314,7 @@ static naginata_kanamap ngdickana[] = {
     {.shift = NONE    , .douji = B_I|B_O|B_B        , .kana = {V, I, NONE, NONE, NONE, NONE   }, .func = nofunc }, // ゔぃ
 
 
-    {.shift = NONE    , .douji = B_I|B_O|B_X        , .kana = {MINUS, NONE, NONE, NONE, NONE, NONE   }, .func = nofunc }, // ー追加
+    {.shift = NONE    , .douji = B_I|B_O|B_X        , .kana = {LS(INT1), NONE, NONE, NONE, NONE, NONE   }, .func = nofunc }, // ＿追加
     // SQTシフト B_SQT 
     {.shift = NONE    , .douji = B_SQT|B_Q        , .kana = {X, K, E, NONE, NONE, NONE   }, .func = nofunc }, // ヶ
     {.shift = NONE    , .douji = B_SQT|B_W        , .kana = {X, K, A, NONE, NONE, NONE   }, .func = nofunc }, // ヵ
