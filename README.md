@@ -1,6 +1,6 @@
-# ZMK 薙刀式を改変したwin向け3行新下駄版です。オリジナルと異なり一部3キー同時押しなど改変があります。
+# ZMK 薙刀式を改変したwinJIS向け3行新下駄版です。オリジナルと異なり一部3キー同時押しなど改変があります。
 
-ZMK Firmwareでwin向け3行新下駄かな入力を実現します。
+ZMK FirmwareでwinJIS向け3行新下駄かな入力を実現します。
 
 薙刀式は大岡俊彦氏が考案されたかな入力方式です。
 
@@ -22,13 +22,13 @@ https://github.com/eswai/zmk-naginata
 
 筆者Twitterアカウント:herm@PTclown
 
-下記は2025/9/30　23時時点の現行のキーマップです。スピード性はあまりないかもしれませんが外来音はかなりカバーしていますのでタイパーでなければ必要十分かと。
+下記は2025/Oct/5　22時時点の現行のキーマップです。スピード性はあまりないかもしれませんが外来音はかなりカバーしていますのでタイパーでなければ必要十分かと。
 
-[https://pbs.twimg.com/media/G13CLHqbEAAZLE3?format=png&name=900x900](https://pbs.twimg.com/media/G2Gfq63aoAA-ubx?format=png&name=900x900)
+https://pbs.twimg.com/media/G2f8fdWaUAAIHB8?format=png&name=900x900
 
 3行で実装するため、面数を増やしております。
 
-・IOとの3キー同時押し面（https://github.com/kirameister/keyboard_layouts/blob/main/README.md）を拝借させていただいています。
+・IOとの3キー同時押し面を拝借させていただいています。（https://github.com/kirameister/keyboard_layouts/blob/main/README.md）
 
 ・親指先行シフト面（ng SPACEを先に押し下げながら、1キーを単打。小書きのぁぃぅぇぉ、押しにくいーげうぉ、外来音などを収録）
 
@@ -36,7 +36,9 @@ https://github.com/eswai/zmk-naginata
 
 ※記号などは完全に新下駄と互換性がありません。薙刀式編集モードの？！・（）で個人的に十分と感じたためです。
 
-その他、薙刀式の句読点に確定をつけています。また一部編集モードを追加しています。
+その他、薙刀式のvm同時押しでEnterなどを取り入れています。
+
+句点には　、だけでなくSPACEもつけています。読点には確定をつけています。また一部編集モードを追加しています。
 
 ## なんで作ったの？
 　ZMK Charlieplexingのキーボードにて同時打鍵判定において、google IMEや紅皿といったソフト側での対応では同時押しの成功率が低くなり実用に耐えなかったためです。（S, I, Oキーと他キーの同時押しにおいて）
@@ -56,6 +58,8 @@ https://github.com/eswai/zmk-naginata
   さらにソフトを起動していないといけない。Microsoft store版では再起動すると都度同時押しタイミング再設定やファイルの指定など必要で面倒。
   
   なぜか性能がよいデスクトップパソコンだと紅皿にて誤変換が起きる。（qwertyを使用していない筆者の環境だけ？）
+
+また上記のようなソフトでは　エクスプローラー, Microsoft teams, DeepLなどでの日本語入力が不安定になるのが頻繁に確認されます。
 
 キーボードで完結できるのは便利であるし、PCを共有しても問題がなく、かな入力の生存戦略としてソフトもいつまで使用できるかという心配を減らせることも大きい。
 
@@ -202,11 +206,19 @@ https://github.com/hamehame2/zmk-config-ZaruBall/blob/ZaruBall-v3xgeta/config/we
 
 https://github.com/hamehame2/zmk-config-ZaruBall/blob/ZaruBall-v3xgeta/config/ZaruBall.keymap
 
-まだOSがUSレイアウトだったらとか、JISだけどzmkをJIS記号に置き換えたコードの場合はどうなるかは検証できておりません。
+下記ではOSがJISでkot様のJISシフトも導入していますがかっこ（）において問題ありませんでした。
+
+https://github.com/hamehame2/Jashine118bts/blob/main/config/west.yml
+
+https://github.com/hamehame2/Jashine118bts/blob/main/config/keymap.keymap
+
+//まだOSがUSレイアウトだったらとか、JISだけどzmkをJIS記号に置き換えたコードの場合はどうなるかは検証できておりません。
+
+//→kot様のJISシフトは問題ありませんでした。
 
 筆者は習い始めたばかりでタイピングが早くありません。タイパーを基準に考えておりません。
 
-筆者はあまりキーボードに詳しくないですが、eswai様にng SQTを足せる旨をご教示いただき実装にこぎつけました。
+筆者はあまりキーボードに詳しくないですが、eswai様にng SQTを足せる旨をご教示いただき本実装にこぎつけました。
 
 この場をお借りして改めてeswai様に御礼申し上げます。またスレにてYuuki Umeta様にもサポートいただき有難うございました。
 
@@ -214,4 +226,4 @@ https://github.com/hamehame2/zmk-config-ZaruBall/blob/ZaruBall-v3xgeta/config/Za
 
  今後とも動画のuploadやSNS等で新下駄界隈を盛り上げていただき、ますます新下駄の発展を願っております。
 
-本MDはZMK新下駄のZaruBall V3にて執筆しました。（英数部分は論理配列をdvorak系統のBoo配列を使用して入力しました）
+本MDはZMK新下駄のZaruBall V3にて執筆しました。（英数部分は論理配列をDvorak系統のBoo配列を使用して入力しました）
