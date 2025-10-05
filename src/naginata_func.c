@@ -254,17 +254,21 @@ void ngh_JKS() { // 『{改行}
     //raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
     //raise_zmk_keycode_state_changed_from_encoded(LEFT, false, timestamp);
     raise_zmk_keycode_state_changed_from_encoded(LS(N8), true, timestamp);
+    k_msleep(10);
     raise_zmk_keycode_state_changed_from_encoded(LS(N8), false, timestamp);
+    k_msleep(10);
     raise_zmk_keycode_state_changed_from_encoded(ENTER, true, timestamp);
+    k_msleep(10);
     raise_zmk_keycode_state_changed_from_encoded(ENTER, false, timestamp);
-    k_msleep(50);
+    k_msleep(20);
     raise_zmk_keycode_state_changed_from_encoded(LS(N9), true, timestamp);
+    k_msleep(10); 
     raise_zmk_keycode_state_changed_from_encoded(LS(N9), false, timestamp);
-    k_msleep(50);    
+    k_msleep(20);    
     raise_zmk_keycode_state_changed_from_encoded(ENTER, true, timestamp);
-    //k_msleep(150);
+    k_msleep(10);
     raise_zmk_keycode_state_changed_from_encoded(ENTER, false, timestamp);
-    k_msleep(100);
+    k_msleep(40);
     raise_zmk_keycode_state_changed_from_encoded(LEFT, true, timestamp);
     raise_zmk_keycode_state_changed_from_encoded(LEFT, false, timestamp);
 }
