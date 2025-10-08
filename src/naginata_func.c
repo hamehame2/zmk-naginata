@@ -412,7 +412,7 @@ void ngh_DFI() { // {vk1Csc079}
     //raise_zmk_keycode_state_changed_from_encoded(LEFT_WIN, false, now);
     raise_zmk_keycode_state_changed_from_encoded(SLASH, true, timestamp);
     raise_zmk_keycode_state_changed_from_encoded(SLASH, false, timestamp);
-    //k_msleep(50); 20251008tameshi
+    k_msleep(50);
     raise_zmk_keycode_state_changed_from_encoded(LEFT_WIN, false, timestamp);
     raise_zmk_keycode_state_changed_from_encoded(LEFT_WIN, false, timestamp);
     raise_zmk_keycode_state_changed_from_encoded(LEFT_WIN, false, timestamp);
