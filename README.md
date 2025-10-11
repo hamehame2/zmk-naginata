@@ -22,26 +22,26 @@ https://github.com/eswai/zmk-naginata
 
 筆者Twitterアカウント:herm@PTclown
 
-下記は2025/Oct/5　22時時点の現行のキーマップです。スピード性はあまりないかもしれませんが外来音はかなりカバーしていますのでタイパーでなければ必要十分かと。
+下記は2025/Oct/11　14時時点の現行のキーマップです。スピード性はあまりないかもしれませんが外来音はかなりカバーしていますのでタイパーでなければ必要十分かと。
 
-https://pbs.twimg.com/media/G2f8fdWaUAAIHB8?format=png&name=900x900
+https://pbs.twimg.com/media/G29AyECbwAIODD-?format=png&name=medium
 
 3行で実装するため、面数を増やしております。
 
-・IOとの3キー同時押し面を拝借させていただいています。（https://github.com/kirameister/keyboard_layouts/blob/main/README.md）
+・IOとの3キー同時押し面を拝借させていただいています。https://github.com/kirameister/keyboard_layouts/blob/main/README.md
 
-・親指先行シフト面（ng SPACEを先に押し下げながら、1キーを単打。小書きのぁぃぅぇぉ、押しにくいーげうぉ、外来音などを収録）
+・親指先行シフト面（ng SPACEを先に押し下げながら、1キーを単打かつ連続シフト可能。小書きのぁぃぅぇぉゃゅょゎヶヵ、押しにくい ーげうぉ、外来音などを収録）
 
-・ほぼ使用しないですが、ng SQT同時押し面（ヶヵ、超マイナー外来音、スラングなどを収録）
+・ほぼ使用しないですが、ng SQT同時押し面（超マイナー外来音、スラングなどを収録）
 
 ※記号などは完全に新下駄と互換性がありません。薙刀式編集モードの？！・（）で個人的に十分と感じたためです。
 
 その他、薙刀式のvm同時押しでEnterなどを取り入れています。
 
-句点には　、だけでなくSPACEもつけています。読点には確定をつけています。また一部編集モードを追加しています。
+句読点には　、や。だけでなくSPACEもつけています。また一部編集モードを追加しています。
 
 ## なんで作ったの？
-　ZMK Charlieplexingのキーボードにて同時打鍵判定において、google IMEや紅皿といったソフト側での対応では同時押しの成功率が低くなり実用に耐えなかったためです。（S, I, Oキーと他キーの同時押しにおいて）
+　ZMK Charlieplexing仕様のキーボード同時打鍵判定において、google IMEや紅皿といったソフト側での対応では同時押しの成功率が低くなり実用に耐えなかったためです。（S, I, Oキーと他キーの同時押しにおいて）
 
  一方eswai様のzmk薙刀式やこちらのように新下駄に改変したものは動作OKでした。
  
@@ -59,11 +59,13 @@ https://pbs.twimg.com/media/G2f8fdWaUAAIHB8?format=png&name=900x900
   
   なぜか性能がよいデスクトップパソコンだと紅皿にて誤変換が起きる。（qwertyを使用していない筆者の環境だけ？）
 
-また上記のようなソフトでは　エクスプローラー, Microsoft teams, DeepLなどでの日本語入力が不安定になるのが頻繁に確認されます。
+また上記のようなソフトでは　エクスプローラー, Microsoft teams, DeepLなどでの日本語入力が不安定になり実用面で不安になるのが頻繁に確認されます。
 
 キーボードで完結できるのは便利であるし、PCを共有しても問題がなく、かな入力の生存戦略としてソフトもいつまで使用できるかという心配を減らせることも大きい。
 
-またQMKよりもZMKのほうが初心者の目線からすると様々なキーボードへの実装が容易です。メモリ容量もpromicroみたいにカツカツなことがZMKのマイコンはほぼないです。
+またQMKよりもZMKのほうが初心者の目線からすると2か所いじるだけで様々なキーボードへの実装が容易です。
+
+またマイコンのフラッシュ（メモリ）容量もpromicroみたいにカツカツなことがZMKのマイコンはほぼないです。
  
 
 ## Github Actionsでwin用のbuildのみ考えています。それ以外は未検証のためサポートできかねます。
@@ -206,7 +208,7 @@ https://github.com/hamehame2/zmk-config-ZaruBall/blob/ZaruBall-v3xgeta/config/we
 
 https://github.com/hamehame2/zmk-config-ZaruBall/blob/ZaruBall-v3xgeta/config/ZaruBall.keymap
 
-下記ではOSがJISでkot様のJISシフトも導入していますがかっこ（）において問題ありませんでした。
+下記ではOSがJISでkot様のJISシフトも導入しているキーボードですがかっこ（）「」や記号の？！％～において問題はありませんでした。
 
 https://github.com/hamehame2/Jashine118bts/blob/main/config/west.yml
 
@@ -217,6 +219,14 @@ https://github.com/hamehame2/Jashine118bts/blob/main/config/keymap.keymap
 //→kot様のJISシフトは問題ありませんでした。
 
 筆者は習い始めたばかりでタイピングが早くありません。タイパーを基準に考えておりません。
+
+新配列の楽さは人によって異なりますが、外来音を2モーラで打つことやげや長音ハイフンーが遠いのが私は苦で改変をしております。（本当はーと読点と入れ替えたい）
+
+親指先行シフト面のng SPACEやng SQTは　場所をどこに入れるかをユーザーが選べます。
+
+そもそも入れないということも簡単にできるのでSKKIMEとかカーソル操作とかマウス操作とかIME文字設定を入れたい人にも悪影響はないと思います。
+
+このためシフト面などは不要と思われるかたは各自のキーボード側のキーレイアウト側を変更ください。
 
 筆者はあまりキーボードに詳しくないですが、eswai様にng SQTを足せる旨をご教示いただき本実装にこぎつけました。
 
