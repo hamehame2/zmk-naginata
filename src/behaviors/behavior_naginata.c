@@ -16,92 +16,151 @@
 
 #include <zmk_naginata/nglist.h>
 #include <zmk_naginata/nglistarray.h>
+#include <zmk_naginata/naginata.h>
 #include <zmk_naginata/naginata_func.h>
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
-extern int64_t timestamp;
 
-#define NONE 0
-
-// 薙刀式
-
-// 31キーを32bitの各ビットに割り当てる
-#define B_Q (1UL << 0)
-#define B_W (1UL << 1)
-#define B_E (1UL << 2)
-#define B_R (1UL << 3)
-#define B_T (1UL << 4)
-
-#define B_Y (1UL << 5)
-#define B_U (1UL << 6)
-#define B_I (1UL << 7)
-#define B_O (1UL << 8)
-#define B_P (1UL << 9)
-
-#define B_A (1UL << 10)
-#define B_S (1UL << 11)
-#define B_D (1UL << 12)
-#define B_F (1UL << 13)
-#define B_G (1UL << 14)
-
-#define B_H (1UL << 15)
-#define B_J (1UL << 16)
-#define B_K (1UL << 17)
-#define B_L (1UL << 18)
-#define B_SEMI (1UL << 19)
-
-
-#define B_Z (1UL << 20)
-#define B_X (1UL << 21)
-#define B_C (1UL << 22)
-#define B_V (1UL << 23)
-#define B_B (1UL << 24)
-
-#define B_N (1UL << 25)
-#define B_M (1UL << 26)
-#define B_COMMA (1UL << 27)
-#define B_DOT (1UL << 28)
-#define B_SLASH (1UL << 29)
-
-#define B_SPACE (1UL << 30)
-#define B_SQT (1UL << 31)
-
-static NGListArray nginput;
-static uint32_t pressed_keys = 0UL; // 押しているキーのビットをたてる
-static int8_t n_pressed_keys = 0;   // 押しているキーの数
-
-#define NG_WINDOWS 0
-#define NG_MACOS 1
-#define NG_LINUX 2
-#define NG_IOS 3
-
-// EEPROMに保存する設定
-typedef union {
-    uint8_t os : 2;  // 2 bits can store values 0-3 (NG_WINDOWS, NG_MACOS, NG_LINUX, NG_IOS)
-    bool tategaki : true; // true: 縦書き, false: 横書き
-} user_config_t;
-
-extern user_config_t naginata_config;
-
-static const uint32_t ng_key[] = {
-    [A - A] = B_A,     [B - A] = B_B,         [C - A] = B_C,         [D - A] = B_D,
-    [E - A] = B_E,     [F - A] = B_F,         [G - A] = B_G,         [H - A] = B_H,
-    [I - A] = B_I,     [J - A] = B_J,         [K - A] = B_K,         [L - A] = B_L,
-    [M - A] = B_M,     [N - A] = B_N,         [O - A] = B_O,         [P - A] = B_P,
-    [Q - A] = B_Q,     [R - A] = B_R,         [S - A] = B_S,         [T - A] = B_T,
-    [U - A] = B_U,     [V - A] = B_V,         [W - A] = B_W,         [X - A] = B_X,
-    [Y - A] = B_Y,     [Z - A] = B_Z,         [SEMI - A] = B_SEMI,   [COMMA - A] = B_COMMA, //[SQT - A] = B_SQT,
-    //[COMMA - A] = B_COMMA, [DOT - A] = B_DOT, [SLASH - A] = B_SLASH, [SPACE - A] = B_SPACE,
-    //[ENTER - A] = B_SPACE,
-    [DOT - A] = B_DOT, [SLASH - A] = B_SLASH, [SPACE - A] = B_SPACE, [ENTER - A] = B_SPACE,
-    [SQT - A] = B_SQT,
+struct naginata_config {
+    bool tategaki;
+    int os;
 };
 
-// カナ変換テーブル
+struct naginata_config naginata_config;
+
+static uint32_t pressed_keys;
+static int n_pressed_keys;
+static int64_t timestamp;
+
+extern bool ng_excluded;
+extern bool ng_enabled;
+extern uint32_t (*ng_mode_keymap)[2];
+
+/*
+ * Windows の全角とMac, iOS, Androidの全角
+ *  0x0001-0x00FF はUSキーボードそのまま
+ * Windows: ｧ 00C0 ｨ 00C1 ｩ 00C2 ｪ 00C3 ｫ 00C4 ｯ 00C5 ｬ 00C6 ｭ 00C7 ｮ 00C8
+ *          ｡ 00C9 ｢ 00CA ｣ 00CB ､ 00CC ･ 00CD ｦ 00CE ｱ 00CF ｲ 00D0 ｳ 00D1 ｴ 00D2 ｵ 00D3
+ *          ｶ 00D4 ｷ 00D5 ｸ 00D6 ｹ 00D7 ｺ 00D8 ｻ 00D9 ｼ 00DA ｽ 00DB ｾ 00DC ｿ 00DD ﾀ 00DE
+ *          ﾁ 00DF ﾂ 00E0 ﾃ 00E1 ﾄ 00E2 ﾅ 00E3 ﾆ 00E4 ﾇ 00E5 ﾈ 00E6 ﾉ 00E7 ﾊ 00E8 ﾋ 00E9
+ *          ﾌ 00EA ﾍ 00EB ﾎ 00EC ﾏ 00ED ﾐ 00EE ﾑ 00EF ﾒ 00F0 ﾓ 00F1 ﾔ 00F2 ﾕ 00F3 ﾖ 00F4
+ *          ﾗ 00F5 ﾘ 00F6 ﾙ 00F7 ﾚ 00F8 ﾛ 00F9 ﾜ 00FA ﾝ 00FBﾞ 00FC ﾟ 00FD
+ * Mac: ｧ 00A7 ｨ 00A8 ｩ 00A9 ｪ 00AA ｫ 00AB ｯ 00AC ｬ 00AD ｭ 00AE ｮ 00AF
+ *      ｡ 00B0 ｢ 00B1 ｣ 00B2 ､ 00B3 ･ 00B4 ｦ 00B5 ｱ 00B6 ｲ 00B7 ｳ 00B8 ｴ 00B9 ｵ 00BA
+ *      ｶ 00BB ｷ 00BC ｸ 00BD ｹ 00BE ｺ 00BF ｻ 00C0 ｼ 00C1 ｽ 00C2 ｾ 00C3 ｿ 00C4 ﾀ 00C5
+ *      ﾁ 00C6 ﾂ 00C7 ﾃ 00C8 ﾄ 00C9 ﾅ 00CA ﾆ 00CB ﾇ 00CC ﾈ 00CD ﾉ 00CE ﾊ 00CF ﾋ 00D0
+ *      ﾌ 00D1 ﾍ 00D2 ﾎ 00D3 ﾏ 00D4 ﾐ 00D5 ﾑ 00D6 ﾒ 00D7 ﾓ 00D8 ﾔ 00D9 ﾕ 00DA ﾖ 00DB
+ *      ﾗ 00DC ﾘ 00DD ﾙ 00DE ﾚ 00DF ﾛ 00E0 ﾜ 00E1 ﾝ 00E2ﾞ 00E3 ﾟ 00E4
+ * iOS, Android: ｧ 00A7 ｨ 00A8 ｩ 00A9 ｪ 00AA ｫ 00AB ｯ 00AC ｬ 00AD ｭ 00AE ｮ 00AF
+ *               ｡ 00B0 ｢ 00B1 ｣ 00B2 ､ 00B3 ･ 00B4 ｦ 00B5 ｱ 00B6 ｲ 00B7 ｳ 00B8 ｴ 00B9 ｵ 00BA
+ *               ｶ 00BB ｷ 00BC ｸ 00BD ｹ 00BE ｺ 00BF ｻ 00C0 ｼ 00C1 ｽ 00C2 ｾ 00C3 ｿ 00C4 ﾀ 00C5
+ *               ﾁ 00C6 ﾂ 00C7 ﾃ 00C8 ﾄ 00C9 ﾅ 00CA ﾆ 00CB ﾇ 00CC ﾈ 00CD ﾉ 00CE ﾊ 00CF ﾋ 00D0
+ *               ﾌ 00D1 ﾍ 00D2 ﾎ 00D3 ﾏ 00D4 ﾐ 00D5 ﾑ 00D6 ﾒ 00D7 ﾓ 00D8 ﾔ 00D9 ﾕ 00DA ﾖ 00DB
+ *               ﾗ 00DC ﾘ 00DD ﾙ 00DE ﾚ 00DF ﾛ 00E0 ﾜ 00E1 ﾝ 00E2ﾞ 00E3 ﾟ 00E4
+ */
+
+/* shift = 00, douji = 01がシフトが効くキー */
+
+#define NONE 0x00
+
+/* shift keys: トグルする順番 */
+const uint32_t ng_shift_list[] = {
+    /* 各段にshiftを導入する場合は、ここにキーを追加する */
+    0,
+};
+
+/* 変換対象 */
+#define A KC_A
+#define B KC_B
+#define C KC_C
+#define D KC_D
+#define E KC_E
+#define F KC_F
+#define G KC_G
+#define H KC_H
+#define I KC_I
+#define J KC_J
+#define K KC_K
+#define L KC_L
+#define M KC_M
+#define N KC_N
+#define O KC_O
+#define P KC_P
+#define Q KC_Q
+#define R KC_R
+#define S KC_S
+#define T KC_T
+#define U KC_U
+#define V KC_V
+#define W KC_W
+#define X KC_X
+#define Y KC_Y
+#define Z KC_Z
+
+#define SPACE KC_SPACE
+#define ENTER KC_ENTER
+#define DOT KC_DOT
+#define COMMA KC_COMMA
+#define SLASH KC_SLASH
+#define SEMI KC_SEMICOLON
+#define SQT KC_APOSTROPHE
+
+/* keymap 平仮名変換用のキー定義 */
+
+#define B_A (1UL << 0)
+#define B_B (1UL << 1)
+#define B_C (1UL << 2)
+#define B_D (1UL << 3)
+#define B_E (1UL << 4)
+#define B_F (1UL << 5)
+#define B_G (1UL << 6)
+#define B_H (1UL << 7)
+#define B_I (1UL << 8)
+#define B_J (1UL << 9)
+#define B_K (1UL << 10)
+#define B_L (1UL << 11)
+#define B_M (1UL << 12)
+#define B_N (1UL << 13)
+#define B_O (1UL << 14)
+#define B_P (1UL << 15)
+#define B_Q (1UL << 16)
+#define B_R (1UL << 17)
+#define B_S (1UL << 18)
+#define B_T (1UL << 19)
+#define B_U (1UL << 20)
+#define B_V (1UL << 21)
+#define B_W (1UL << 22)
+#define B_X (1UL << 23)
+#define B_Y (1UL << 24)
+#define B_Z (1UL << 25)
+#define B_SPACE (1UL << 26)
+#define B_ENTER (1UL << 27)
+#define B_DOT (1UL << 28)
+#define B_COMMA (1UL << 29)
+#define B_SLASH (1UL << 30)
+#define B_SEMI (1UL << 31)
+
+/* 変換対象のキーマップ（shiftキーとして使うキーには01を足すこと） */
+
+const uint32_t ng_key[30] = {
+    B_A,     B_B,     B_C,     B_D,     B_E,     B_F,     B_G, B_H,
+    B_I,     B_J,     B_K,     B_L,     B_M,     B_N,     B_O, B_P,
+    B_Q,     B_R,     B_S,     B_T,     B_U,     B_V,     B_W, B_X,
+    B_Y,     B_Z,     B_SPACE, B_ENTER, B_DOT,   B_COMMA,
+};
+
+enum {
+    NG_WINDOWS,
+    NG_MACOS,
+    NG_LINUX,
+};
+
+/* 平仮名変換テーブル */
+
 typedef struct {
     uint32_t shift;
     uint32_t douji;
-    uint32_t kana[6];
+    uint8_t kana[6];
     void (*func)(void);
 } naginata_kanamap;
 
@@ -545,7 +604,58 @@ static naginata_kanamap ngdickana[] = {
 
 };
 
-// Helper function for counting matches/candidates
+
+
+
+
+/* ============================================================
+ * ここからメジロ対応のための「左右分離」追加コード
+ * ============================================================ */
+
+// QWERTY 左手 / 右手判別
+static inline bool ng_is_left_key(uint32_t keycode) {
+    switch (keycode) {
+        // 左手
+        case Q: case W: case E: case R: case T:
+        case A: case S: case D: case F: case G:
+        case Z: case X: case C: case V: case B:
+            return true;
+
+        // 右手（＆その他）は false
+        case Y: case U: case I: case O: case P:
+        case H: case J: case K: case L: case SEMI: case SQT:
+        case N: case M: case COMMA: case DOT: case SLASH:
+        case SPACE: case ENTER:
+        default:
+            return false;
+    }
+}
+
+// NGList を「左→右」の順に並べ替える（stable）
+static void ng_stable_left_first(const NGList *in, NGList *out) {
+    initializeList(out);
+
+    // まず左手キーを順番通りに追加
+    for (int i = 0; i < in->size; i++) {
+        uint32_t kc = in->elements[i];
+        if (ng_is_left_key(kc)) {
+            addToList(out, kc);
+        }
+    }
+
+    // 次に右手キーを順番通りに追加
+    for (int i = 0; i < in->size; i++) {
+        uint32_t kc = in->elements[i];
+        if (!ng_is_left_key(kc)) {
+            addToList(out, kc);
+        }
+    }
+}
+
+
+
+
+
 static int count_kana_entries(NGList *keys, bool exact_match) {
   if (keys->size == 0) return 0;
 
@@ -681,6 +791,12 @@ void ng_type(NGList *keys) {
 
     LOG_DBG("<NAGINATA NG_TYPE");
 }
+
+
+
+
+
+
 
 // 薙刀式の入力処理
 bool naginata_press(struct zmk_behavior_binding *binding, struct zmk_behavior_binding_event event) {
